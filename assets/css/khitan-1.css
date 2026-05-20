@@ -93,3 +93,67 @@ div#embedYT {
     display: flex;
     justify-content: center;
 }
+
+/*alert*/
+.alert {
+    position: fixed;
+    min-width: 300px;
+    max-width: 720px;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 7px;
+    overflow: hidden;
+    text-align: center;
+    z-index: 999999999;
+    color: #f9f9f9;
+    padding: 0 40px 0 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.25s ease-in-out;
+}
+
+.alert.show {
+    opacity: 1;
+    visibility: visible !important;
+}
+
+.alert.hide {
+    opacity: 0;
+    visibility: hidden !important;
+}
+
+.alert.success {
+    background: #28a745;
+    color: #ffffff;
+}
+.alert.error {
+    background: #dc3545;
+    color: #ffffff;
+}
+.alert.info {
+    background: #3267E3;
+    color: #ffffff;
+}
+
+.alert-text {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 0 10px 0;
+}
+
+.alert-close {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    cursor: pointer;
+    color: #fff;
+}
