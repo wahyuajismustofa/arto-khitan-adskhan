@@ -253,20 +253,7 @@
      </div>
     </div>
    </div>
-   <div class="py-5 bg-light" id="kado">
-    <div class="container">
-     <div class="text-center">
-      <h3 class="text-dark">
-       Kado Khitan
-      </h3>
-      <div>
-       Kehadiran dan doa Anda sudah sangat berarti bagi kami. Namun jika Anda ingin memberikan kenang-kenangan untuk Adskhan, berikut kami sediakan informasinya.
-      </div>
-     </div>
-     <div class="container" id="daftar-rekening">
-     </div>
-    </div>
-   </div>
+
    <div class="py-5" id="doa">
     <div class="container">
      <div class="text-center">
@@ -279,32 +266,32 @@ Jika Anda ingin menyampaikan ucapan secara langsung, silakan tulis melalui form 
       </div>
      </div>
      <div class="card card-body mt-4">
-      <form autocomplete="off" class="weddingWishForm" id="weddingWishForm">
-       <div class="form-group" data-aos="fade-up" data-aos-duration="2000">
+<form autocomplete="off" id="weddingWishForm" data-aksi="github-post" data-dekeku_proxy="true" data-file="undangan.pesan" data-aksi-bound="true">
+       <div class="form-group aos-init aos-animate" data-aos="fade-up" data-aos-duration="2000">
         <textarea class="form-control" cols="30" id="input-doa" name="doa" placeholder="Tuliskan ucapan atau doa untuk  pemilik acara" rows="6"></textarea>
        </div>
-       <input id="input-waktu" name="waktu" type="hidden"/>
-       <div class="mb-3" data-aos="fade-up" data-aos-duration="2000">
+       <div class="mb-3 aos-init aos-animate" data-aos="fade-up" data-aos-duration="2000">
         <div class="form-check">
-         <input class="form-check-input" id="input-hadir" name="kehadiran" type="radio" value="Hadir"/>
-         <label class="form-check-label" for="hadir">
+         <input class="form-check-input" id="input-hadir" name="kehadiran" type="radio" value="Hadir">
+         <label class="form-check-label" for="input-hadir">
           Saya akan hadir
          </label>
         </div>
         <div class="form-check">
-         <input class="form-check-input" id="input-tidak-hadir" name="kehadiran" type="radio" value="Tidak_Hadir"/>
-         <label class="form-check-label" for="exampleRadios2">
+         <input class="form-check-input" id="input-tidak-hadir" name="kehadiran" type="radio" value="Tidak Hadir">
+         <label class="form-check-label" for="input-tidak-hadir">
           Maaf, saya tidak bisa hadir
          </label>
         </div>
        </div>
+       <input data-type="timestamp" name="waktu" type="hidden">
        <button class="btn btn-primary btn-block" id="btn-submit-doa" type="submit">
         KIRIM
        </button>
-      </form>
+      <input type="hidden" name="nama" value="Arto Printing"></form>
      </div>
     </div>
-   </div>
+   </div>  
    <div class="py-5 bg-light" id="data-doa">
     <div class="container doa-card">
     </div>
