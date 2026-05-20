@@ -23,10 +23,6 @@ let data = {};
     el.textContent = namaTamu;
   });
 
-// form handler
-const SCRIPT_BASE_URL = "https://script.google.com/macros/s/AKfycbwZ_spsPzVJ_VC4y_mgYjUvFHYAagYjMseFTODgZUG1QXQZtKdlAxiuaVVXQ4HjaMN8rw/exec";
-const DATABASE_NAME = "preview2";
-
 function encodeCustom(text) {
   return text
     .trim()
@@ -34,79 +30,7 @@ function encodeCustom(text) {
     .replace(/,/g, "--koma--");
 }
 
-async function handleFormSubmit(event) {
-  const form = event.target;
-  event.preventDefault();
-  if (typeof namaTamu === 'undefined' || !namaTamu) {
-    showAlert('Tamu tidak terdaftar!', "error");
-    console.warn('namaTamu tidak ditemukan:', namaTamu);
-    return;
-  }
 
-    // Isi input hidden 'waktu' dengan timestamp saat ini
-    const waktuInput = form.querySelector('#input-waktu');
-    if (waktuInput) {
-    const now = new Date();
-    const waktuFormatted = now.toLocaleString("id-ID", {
-        day: "2-digit", month: "2-digit", year: "numeric",
-        hour: "2-digit", minute: "2-digit", second: "2-digit"
-    });
-    waktuInput.value = waktuFormatted;
-    }
-
-  const formData = new FormData(form);
-  const updateFields = [];
-
-  for (const [name, value] of formData.entries()) {
-    const key = encodeCustom(name);
-    const val = encodeURIComponent(encodeCustom(value));
-    updateFields.push(`${key}=${val}`);
-  }
-
-  const query = `UPDATE tamu SET ${updateFields.join(",")} WHERE nama=${encodeCustom(namaTamu)}`;
-  const url = `${SCRIPT_BASE_URL}?conn=DATABASE=${DATABASE_NAME}&data=${query}`;
-
-  try {
-    const response = await fetch(url);
-    const result = await response.json();
-
-    if (result.status === true) {
-    showAlert("Data berhasil dikirim. Terima kasih!", "success");
-    } else {
-      showAlert("Gagal menyimpan data. Silakan coba lagi.", "error");
-    }
-  } catch (error) {
-    console.error("Terjadi kesalahan:", error);
-    showAlert("Terjadi kesalahan saat mengirim data.", "error");
-  }
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("form-doa");
-  if (form) {
-    form.addEventListener("submit", async (event) => {
-      event.preventDefault();
-
-      const doaInput = form.querySelector('[name="doa"]');
-      const kehadiranInput = form.querySelector('[name="kehadiran"]:checked');
-
-      // Validasi isi doa
-      if (!doaInput || !doaInput.value.trim()) {
-        showAlert("Mohon isi Pesan terlebih dahulu.", "warning");
-        return;
-      }
-
-      // Validasi pilihan kehadiran
-      if (!kehadiranInput) {
-        showAlert("Mohon pilih status kehadiran.", "warning");
-        return;
-      }
-      showAlert("Mengirim data", "info");
-      // Lanjutkan ke fungsi submit utama
-      handleFormSubmit(event);
-    });
-  }
-});
 
 
 function showAlert(pesan, status = "info") {
@@ -158,7 +82,6 @@ function showAlert(pesan, status = "info") {
 
 // showAlert("Data berhasil dikirim", "success");
 // showAlert("Gagal menyimpan data", "error");
-// showAlert("Silakan isi semua form", "warning");
 // showAlert("Info tambahan untuk pengguna");
 
 // fungsi get data tamu
@@ -175,7 +98,7 @@ async function getData(namaFile) {
 }
 async function init() {
   try {
-    data = await getData('preview-tamu-khitan');
+    data = await getData('undangan');
 
     if (Array.isArray(data.tamu) && data.tamu.length > 0) {
       renderDoaCards(data.tamu);
