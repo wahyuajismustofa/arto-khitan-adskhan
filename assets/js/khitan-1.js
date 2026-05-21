@@ -249,6 +249,7 @@ window.addEventListener("load", () => {
   window.scrollTo(0, 0);
 });
 
+
 // Inisialisasi
 
 document.addEventListener("DOMContentLoaded", renderRekeningList);
