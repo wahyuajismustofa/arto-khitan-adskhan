@@ -151,8 +151,17 @@ function loadMoreDoa(container, isRowBased) {
   const html = slice.map((item, index) => {
     const nama = item.nama || "Tamu";
     const pesan = item.pesan || "-";
-    const waktu = item.waktu || "-";
-    const kehadiran = item.kehadiran || "Tidak diketahui";
+    const kehadiran = item.kehadiran || "-";
+
+    const waktu = new Date(item.waktu).toLocaleString("id-ID", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      timeZone: "Asia/Jakarta"
+    });
 
     const labelClass = kehadiran.toLowerCase().includes("hadir")
       ? "label-hadir"
@@ -232,6 +241,13 @@ function salinRekening(nomor) {
   }
 }
 
+window.addEventListener("beforeunload", () => {
+  window.scrollTo(0, 0);
+});
+
+window.addEventListener("load", () => {
+  window.scrollTo(0, 0);
+});
 
 // Inisialisasi
 
