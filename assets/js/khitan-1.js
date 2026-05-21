@@ -100,8 +100,8 @@ async function init() {
   try {
     data = await getData('undangan');
 
-    if (Array.isArray(data.tamu) && data.tamu.length > 0) {
-      renderDoaCards(data.tamu);
+    if (Array.isArray(data.pesan) && data.pesan.length > 0) {
+      renderDoaCards(data.pesan);
     } else {
       console.warn("Data kosong atau tidak valid.");
     }
